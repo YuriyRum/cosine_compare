@@ -1,0 +1,6 @@
+{
+  "name": "Vector Cosine & Nines Normalizer Calculator",
+  "description": "Calculate vector cosine similarity with pairwise max-normalized inputs and amplified trust coefficient sensitivity for right-side values.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
