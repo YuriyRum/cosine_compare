@@ -6,9 +6,9 @@ import { formatFloat } from './utils/transformation';
 export default function App() {
   const [inputsA, setInputsA] = useState<string[]>(['7898', '240', '890', 'TEST1', '1020']);
   const [inputsB, setInputsB] = useState<string[]>(['7889', '240', '890', 'TEST1', '1020']);
-  const [inputsTrust, setInputsTrust] = useState<string[]>(['0,5', '1.0', '1.0', '1.0', '1.0']);
+  const [inputsTrust, setInputsTrust] = useState<string[]>(['0.5', '1.0', '1.0', '1.0', '1.0']);
   const [calculation, setCalculation] = useState<VectorCalculation | null>(() =>
-    calculateVectorCosine(['7898', '240', '890', 'TEST1', '1020'], ['7889', '240', '890', 'TEST1', '1020'], ['1.0', '1.0', '1.0', '1.0', '1.0'])
+    calculateVectorCosine(['7898', '240', '890', 'TEST1', '1020'], ['7889', '240', '890', 'TEST1', '1020'], ['0.5', '1.0', '1.0', '1.0', '1.0'])
   );
 
   const handleInputChangeA = (index: number, val: string) => {
@@ -47,11 +47,8 @@ export default function App() {
         {/* Header */}
         <div className="space-y-1">
           <h1 className="text-xl font-bold text-slate-900 tracking-tight">
-            Vector Distance & Cosine Calculator
+            Cosine similarity
           </h1>
-          <p className="text-xs text-slate-500 leading-relaxed">
-            Values are divided by the largest value in the pair (text is deterministically hashed via 32-bit DJB2). When trust is 1 or near 1, distance is magnified even for small differences; when trust is small, distance is minimized towards 0.
-          </p>
         </div>
 
         {/* 3 Columns for Inputs */}
