@@ -143,51 +143,21 @@ export default function App() {
           <div id="result-container" className="pt-4 border-t border-slate-100 space-y-6">
             
             {/* Primary Metrics Summary */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              
-              {/* Cosine Distance Card */}
-              <div className="bg-slate-50 rounded-xl p-4 border border-slate-200/80 text-center space-y-1">
-                <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">
-                  Cosine Distance
-                </span>
-                <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-mono">
-                  {calculation.cosineDistance !== null
-                    ? calculation.cosineDistance.toFixed(6)
-                    : 'Undefined'}
-                </div>
-                <div className="text-[11px] text-slate-500 font-mono">
-                  {calculation.overallTrust >= 0.9 ? 'Magnified by high trust' : calculation.overallTrust <= 0.2 ? 'Minimized by low trust' : 'Trust adjusted'}
-                </div>
-              </div>
-
-              {/* Euclidean Distance Card */}
-              <div className="bg-slate-50 rounded-xl p-4 border border-slate-200/80 text-center space-y-1">
-                <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">
-                  Euclidean Distance
-                </span>
-                <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-mono">
-                  {calculation.euclideanDistance.toFixed(6)}
-                </div>
-                <div className="text-[11px] text-slate-500 font-mono">
-                  Base diff: {calculation.rawEuclideanDistance.toFixed(4)}
-                </div>
-              </div>
-
+            <div className="max-w-md mx-auto">
               {/* Cosine Similarity Card */}
-              <div className="bg-indigo-50/60 rounded-xl p-4 border border-indigo-100 text-center space-y-1">
-                <span className="text-[11px] font-semibold text-indigo-600 uppercase tracking-wider block">
+              <div className="bg-indigo-50/60 rounded-xl p-5 border border-indigo-100 text-center space-y-1.5">
+                <span className="text-xs font-semibold text-indigo-600 uppercase tracking-wider block">
                   Cosine Similarity
                 </span>
-                <div className="text-2xl sm:text-3xl font-extrabold text-indigo-700 font-mono">
+                <div className="text-3xl sm:text-4xl font-extrabold text-indigo-700 font-mono">
                   {calculation.cosineSimilarity !== null
                     ? calculation.cosineSimilarity.toFixed(6)
                     : 'Undefined'}
                 </div>
-                <div className="text-[11px] text-indigo-600/80 font-mono">
-                  {calculation.similarityPercentage !== null ? `${calculation.similarityPercentage.toFixed(2)}%` : ''}
+                <div className="text-xs font-medium text-indigo-600/80 font-mono">
+                  {calculation.similarityPercentage !== null ? `${calculation.similarityPercentage.toFixed(2)}% match` : ''}
                 </div>
               </div>
-
             </div>
 
           </div>
