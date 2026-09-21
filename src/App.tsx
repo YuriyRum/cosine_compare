@@ -35,12 +35,6 @@ export default function App() {
     });
   };
 
-  const setAllTrust = (val: string) => {
-    const updated = [val, val, val, val, val];
-    setInputsTrust(updated);
-    setCalculation(calculateVectorCosine(inputsA, inputsB, updated));
-  };
-
   const handleCalculate = () => {
     const result = calculateVectorCosine(inputsA, inputsB, inputsTrust);
     setCalculation(result);
@@ -134,39 +128,6 @@ export default function App() {
               ))}
             </div>
           </div>
-        </div>
-
-        {/* Quick Test Presets for Trust Coefficient */}
-        <div className="flex flex-wrap items-center gap-2 text-xs">
-          <span className="text-slate-500 font-medium mr-1">Quick Test Trust:</span>
-          <button
-            type="button"
-            onClick={() => setAllTrust('1.0')}
-            className="px-2.5 py-1 rounded-md bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-mono font-semibold transition-colors cursor-pointer"
-          >
-            All 1.0 (High Trust → Magnified Distance)
-          </button>
-          <button
-            type="button"
-            onClick={() => setAllTrust('0.5')}
-            className="px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono transition-colors cursor-pointer"
-          >
-            All 0.5 (Moderate)
-          </button>
-          <button
-            type="button"
-            onClick={() => setAllTrust('0.1')}
-            className="px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono transition-colors cursor-pointer"
-          >
-            All 0.1 (Low Trust → Minimized Distance)
-          </button>
-          <button
-            type="button"
-            onClick={() => setAllTrust('0.0')}
-            className="px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono transition-colors cursor-pointer"
-          >
-            All 0.0 (Zero Distance)
-          </button>
         </div>
 
         {/* Calculate Button */}
