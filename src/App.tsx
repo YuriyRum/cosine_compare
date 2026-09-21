@@ -4,11 +4,11 @@ import { calculateVectorCosine } from './utils/vectorMath';
 import { formatFloat } from './utils/transformation';
 
 export default function App() {
-  const [inputsA, setInputsA] = useState<string[]>(['22', '7', '890', 'cat', '12']);
-  const [inputsB, setInputsB] = useState<string[]>(['23', '8', '905', 'car', '13']);
-  const [inputsTrust, setInputsTrust] = useState<string[]>(['1.0', '1.0', '1.0', '1.0', '1.0']);
+  const [inputsA, setInputsA] = useState<string[]>(['7898', '240', '890', 'TEST1', '1020']);
+  const [inputsB, setInputsB] = useState<string[]>(['7889', '240', '890', 'TEST1', '1020']);
+  const [inputsTrust, setInputsTrust] = useState<string[]>(['0,5', '1.0', '1.0', '1.0', '1.0']);
   const [calculation, setCalculation] = useState<VectorCalculation | null>(() =>
-    calculateVectorCosine(['22', '7', '890', 'cat', '12'], ['23', '8', '905', 'car', '13'], ['1.0', '1.0', '1.0', '1.0', '1.0'])
+    calculateVectorCosine(['7898', '240', '890', 'TEST1', '1020'], ['7889', '240', '890', 'TEST1', '1020'], ['1.0', '1.0', '1.0', '1.0', '1.0'])
   );
 
   const handleInputChangeA = (index: number, val: string) => {
