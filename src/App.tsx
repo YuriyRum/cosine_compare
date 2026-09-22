@@ -4,12 +4,44 @@ import { calculateVectorCosine } from './utils/vectorMath';
 import { formatFloat } from './utils/transformation';
 
 export default function App() {
+  const [setNameA, setSetNameA] = useState<string>('Set 1');
+  const [setNameB, setSetNameB] = useState<string>('Set 2');
+  const [setNameTrust, setSetNameTrust] = useState<string>('Trust Coefficient (C)');
+
+  const [labelsA, setLabelsA] = useState<string[]>(['A1', 'A2', 'A3', 'A4', 'A5']);
+  const [labelsB, setLabelsB] = useState<string[]>(['B1', 'B2', 'B3', 'B4', 'B5']);
+  const [labelsTrust, setLabelsTrust] = useState<string[]>(['C1', 'C2', 'C3', 'C4', 'C5']);
+
   const [inputsA, setInputsA] = useState<string[]>(['7898', '240', '890', 'TEST1', '1020']);
   const [inputsB, setInputsB] = useState<string[]>(['7889', '240', '890', 'TEST1', '1020']);
   const [inputsTrust, setInputsTrust] = useState<string[]>(['0.5', '1.0', '1.0', '1.0', '1.0']);
   const [calculation, setCalculation] = useState<VectorCalculation | null>(() =>
     calculateVectorCosine(['7898', '240', '890', 'TEST1', '1020'], ['7889', '240', '890', 'TEST1', '1020'], ['0.5', '1.0', '1.0', '1.0', '1.0'])
   );
+
+  const handleLabelChangeA = (index: number, val: string) => {
+    setLabelsA((prev) => {
+      const next = [...prev];
+      next[index] = val;
+      return next;
+    });
+  };
+
+  const handleLabelChangeB = (index: number, val: string) => {
+    setLabelsB((prev) => {
+      const next = [...prev];
+      next[index] = val;
+      return next;
+    });
+  };
+
+  const handleLabelChangeTrust = (index: number, val: string) => {
+    setLabelsTrust((prev) => {
+      const next = [...prev];
+      next[index] = val;
+      return next;
+    });
+  };
 
   const handleInputChangeA = (index: number, val: string) => {
     setInputsA((prev) => {
@@ -56,14 +88,28 @@ export default function App() {
           
           {/* Column 1: Set 1 (Vector A) */}
           <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-slate-800">Set 1 (Vector A)</h2>
-              <span className="text-[11px] font-medium text-slate-400">Reference</span>
+            <div className="flex items-center justify-between gap-2">
+              <input
+                type="text"
+                value={setNameA}
+                onChange={(e) => setSetNameA(e.target.value)}
+                placeholder="Set 1"
+                className="text-sm font-semibold text-slate-800 bg-slate-50 hover:bg-slate-100/80 focus:bg-white border border-slate-200/70 focus:border-indigo-500 rounded-md px-2 py-1 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 w-full transition-all"
+                title="Edit column 1 title"
+              />
+              <span className="text-[11px] font-medium text-slate-400 shrink-0">Vector A</span>
             </div>
             <div className="space-y-2.5">
               {inputsA.map((val, idx) => (
                 <div key={idx} className="flex items-center gap-2">
-                  <span className="text-xs font-mono font-medium text-slate-400 w-6">A{idx + 1}</span>
+                  <input
+                    type="text"
+                    value={labelsA[idx]}
+                    onChange={(e) => handleLabelChangeA(idx, e.target.value)}
+                    placeholder={`A${idx + 1}`}
+                    className="w-14 shrink-0 px-1.5 py-2 bg-slate-100 hover:bg-slate-200/60 focus:bg-white border border-slate-200 rounded-lg text-xs font-mono font-medium text-slate-600 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 transition-all text-center"
+                    title="Edit field label"
+                  />
                   <input
                     id={`input-a-${idx + 1}`}
                     type="text"
@@ -79,14 +125,28 @@ export default function App() {
 
           {/* Column 2: Set 2 (Vector B - Right side) */}
           <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-slate-800">Set 2 (Vector B)</h2>
-              <span className="text-[11px] font-medium text-slate-400">Right Side</span>
+            <div className="flex items-center justify-between gap-2">
+              <input
+                type="text"
+                value={setNameB}
+                onChange={(e) => setSetNameB(e.target.value)}
+                placeholder="Set 2"
+                className="text-sm font-semibold text-slate-800 bg-slate-50 hover:bg-slate-100/80 focus:bg-white border border-slate-200/70 focus:border-indigo-500 rounded-md px-2 py-1 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 w-full transition-all"
+                title="Edit column 2 title"
+              />
+              <span className="text-[11px] font-medium text-slate-400 shrink-0">Vector B</span>
             </div>
             <div className="space-y-2.5">
               {inputsB.map((val, idx) => (
                 <div key={idx} className="flex items-center gap-2">
-                  <span className="text-xs font-mono font-medium text-slate-400 w-6">B{idx + 1}</span>
+                  <input
+                    type="text"
+                    value={labelsB[idx]}
+                    onChange={(e) => handleLabelChangeB(idx, e.target.value)}
+                    placeholder={`B${idx + 1}`}
+                    className="w-14 shrink-0 px-1.5 py-2 bg-slate-100 hover:bg-slate-200/60 focus:bg-white border border-slate-200 rounded-lg text-xs font-mono font-medium text-slate-600 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 transition-all text-center"
+                    title="Edit field label"
+                  />
                   <input
                     id={`input-b-${idx + 1}`}
                     type="text"
@@ -102,14 +162,28 @@ export default function App() {
 
           {/* Column 3: Coefficient of Trust */}
           <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-slate-800">Trust Coefficient (C)</h2>
-              <span className="text-[11px] font-medium text-indigo-600 font-mono">0.0 – 1.0</span>
+            <div className="flex items-center justify-between gap-2">
+              <input
+                type="text"
+                value={setNameTrust}
+                onChange={(e) => setSetNameTrust(e.target.value)}
+                placeholder="Trust Coefficient (C)"
+                className="text-sm font-semibold text-slate-800 bg-slate-50 hover:bg-slate-100/80 focus:bg-white border border-slate-200/70 focus:border-indigo-500 rounded-md px-2 py-1 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 w-full transition-all"
+                title="Edit column 3 title"
+              />
+              <span className="text-[11px] font-medium text-indigo-600 font-mono shrink-0">0.0 – 1.0</span>
             </div>
             <div className="space-y-2.5">
               {inputsTrust.map((val, idx) => (
                 <div key={idx} className="flex items-center gap-2">
-                  <span className="text-xs font-mono font-medium text-indigo-500 w-6">C{idx + 1}</span>
+                  <input
+                    type="text"
+                    value={labelsTrust[idx]}
+                    onChange={(e) => handleLabelChangeTrust(idx, e.target.value)}
+                    placeholder={`C${idx + 1}`}
+                    className="w-14 shrink-0 px-1.5 py-2 bg-indigo-100/60 hover:bg-indigo-100 focus:bg-white border border-indigo-200/80 rounded-lg text-xs font-mono font-medium text-indigo-600 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 transition-all text-center"
+                    title="Edit field label"
+                  />
                   <input
                     id={`input-trust-${idx + 1}`}
                     type="number"
